@@ -1,0 +1,7 @@
+*/bin/*
+*/bin/*.o
+*.o
+*.gch
+leak_info.txt
+._*
+.DS_Store
