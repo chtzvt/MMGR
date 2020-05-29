@@ -1,5 +1,6 @@
 #include  <stdlib.h>
 #include <string.h>
+#include "debugf.h"
 
 #ifndef DEBUG_LEVEL_MMGR
 #define DEBUG_LEVEL_MMGR 0
