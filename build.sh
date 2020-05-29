@@ -19,7 +19,7 @@ BLACKLIST_DIRS="Labs"
 
 # How many commits back should we check for changes to files? ("lower bound", default 10 commits)
 # Only source files with fresh changes that are within this range will be built
-COMMIT_RANGE_LBOUND=9
+COMMIT_RANGE_LBOUND=10
 
 if [ $PRINT_SYSINFO == 1 ]
 then
@@ -65,6 +65,15 @@ Language versions:
       Make:
       $MAKE_VER
 "
+fi
+
+REPO_TOTAL_COMMITS=`git rev-list --all --count`
+
+if [[ $COMMIT_RANGE_LBOUND -gt $REPO_TOTAL_COMMITS ]]
+then
+  echo -e "!! [Grok Notice] Configured commit lower bound ($COMMIT_RANGE_LBOUND) is greater than the total number of commits in this repo: $REPO_TOTAL_COMMITS"
+  COMMIT_RANGE_LBOUND=$(($REPO_TOTAL_COMMITS - 1))
+  echo -e "!! [Grok Notice] This value was overridden to: $COMMIT_RANGE_LBOUND"
 fi
 
 # Find subdirectories with new changes and makefiles (which we can then build and test), excluding the blacklist
