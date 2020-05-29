@@ -1,6 +1,13 @@
 #include  <stdlib.h>
 #include <string.h>
-#include "debugf.h"
+
+#ifndef DEBUG_LEVEL_MMGR
+#define DEBUG_LEVEL_MMGR 0
+#endif
+
+#ifndef DEBUG
+#define debugf(lvl, fmt, ...) ((void)0)
+#endif
 
 typedef struct MMGR_Entry {
         void* handle;
