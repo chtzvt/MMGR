@@ -144,8 +144,6 @@ ifneq ("$(wildcard ${CURDIR}/test_args.txt)","")
 else
 	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes	${CURDIR}/bin/$(PROJNAME) < ${CURDIR}/test_input.txt
 endif
-
-	$(info Make (Grok - Test): Tests for "${PROJNAME}" have finished.)
 else
 	$(info Make (Grok - Test): Will not test "${PROJNAME}", as no test input is available! (${CURDIR}/test_input.txt doesn't exist))
 	$(info Make (Grok - Test): Use 'make testfile' or 'make etf' to create one.)
