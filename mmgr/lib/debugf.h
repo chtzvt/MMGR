@@ -14,12 +14,13 @@
 #define DEBUG DEBUG_LEVEL_ALL
 
 #ifdef DEBUG
-#define debugf(lvl, fmt, ...) \
-        ({ \
-                if (DEBUG == 0 || (lvl > 0 && lvl >= DEBUG) || (lvl < 0 && lvl == DEBUG)) { \
-                        fprintf(stderr, fmt, ## __VA_ARGS__); fflush(stderr); \
-                } \
-        })
+#define debugf(lvl, fmt, ...)                                                   \
+  ({                                                                            \
+    if (DEBUG == 0 || (lvl > 0 && lvl >= DEBUG) || (lvl < 0 && lvl == DEBUG)) { \
+      fprintf(stderr, fmt, ##__VA_ARGS__);                                      \
+      fflush(stderr);                                                           \
+    }                                                                           \
+  })
 #else
-  #define debugf(lvl, fmt, ...) ((void)0)
+#define debugf(lvl, fmt, ...) ((void)0)
 #endif
